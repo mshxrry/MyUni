@@ -55,9 +55,9 @@ namespace MyUni.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,LastName,FirstName,EnrollmentDate")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentID,LastName,FirstName,EnrollmentDate,DOB")] Student student)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(student);
                 await _context.SaveChangesAsync();
@@ -94,7 +94,7 @@ namespace MyUni.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {

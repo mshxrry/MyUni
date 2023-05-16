@@ -60,7 +60,7 @@ namespace MyUni.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EnrollmentID,StudentID,CourseID,Grade")] Enrollment enrollment)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(enrollment);
                 await _context.SaveChangesAsync();
@@ -101,7 +101,7 @@ namespace MyUni.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
