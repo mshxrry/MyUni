@@ -19,12 +19,21 @@ namespace MyUni.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchstring)
         {
-            return _context.Student != null ?
-                        View(await _context.Student.ToListAsync()) :
-                        Problem("Entity set 'MyUniContextDb.Student'  is null.");
+            if (_context.Student == null)
+            {
+                return Problem("Entity set 'MyUniContextDb' is null");
+            }
+            var students = from s in _context.Student
+                           select s;
+            if (!String.IsNullOrEmpty(searchstring))
+            {
+                students = students.Where(s => s.FirstName!.Contains(searchstring));
+            }
+            return View(await students.ToListAsync());
         }
+                          
 
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)

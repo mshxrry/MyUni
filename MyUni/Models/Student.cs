@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyUni.Models
 {
@@ -8,6 +9,7 @@ namespace MyUni.Models
         public string LastName { get; set; }
         public string FirstName { get; set; }
         [NotMapped]
+        [Display(Name = "Full Name")]
         public string FullName { get { return FirstName + " " + LastName; } }
         
         public DateTime EnrollmentDate { get; set; }
