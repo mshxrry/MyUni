@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyUni.Models;
 
-    public class MyUniContextDb : DbContext
+    public class MyUniContextDb : IdentityDbContext
     {
         public MyUniContextDb (DbContextOptions<MyUniContextDb> options)
             : base(options)

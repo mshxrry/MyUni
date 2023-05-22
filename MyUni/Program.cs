@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyUniContextDb>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyUniContextDb") ?? throw new InvalidOperationException("Connection string 'MyUniContextDb' not found.")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<MyUniContextDb>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -27,6 +27,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
