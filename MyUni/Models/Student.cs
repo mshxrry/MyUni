@@ -8,6 +8,7 @@ namespace MyUni.Models
         public int StudentID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        // This adds a display name of full name in the database instead of showing last name and first name 
         [NotMapped]
         [Display(Name = "Full Name")]
         public string FullName { get { return FirstName + " " + LastName; } }
