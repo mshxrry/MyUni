@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
-using MyUni.Areas.Identity.Data;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyUniContextDb>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyUniContextDb") ?? throw new InvalidOperationException("Connection string 'MyUniContextDb' not found.")));
